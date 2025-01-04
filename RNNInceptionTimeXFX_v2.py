@@ -8,7 +8,7 @@ noop = torch.nn.Sequential()
 def ifnone(a, b):
     return b if a is None else a
 
-class _RNNInceptionTimeXFX2_Base(torch.nn.Module):
+class _RNNInceptionTimeXFX_v2_Base(torch.nn.Module):
     def __init__(self,
                  c_in, c_out, seq_len,
                  # XFX 
@@ -74,19 +74,19 @@ class _RNNInceptionTimeXFX2_Base(torch.nn.Module):
         out = self.fc(out)
         return out
 
-class RNNInceptionTimeXFX2(_RNNInceptionTimeXFX2_Base):
+class RNNInceptionTimeXFX_v2(_RNNInceptionTimeXFX_v2_Base):
     _cell = torch.nn.RNN
     
-class GRUInceptionTimeXFX2(_RNNInceptionTimeXFX2_Base):
+class GRUInceptionTimeXFX_v2(_RNNInceptionTimeXFX_v2_Base):
     _cell = torch.nn.GRU
 
-class LSTMInceptionTimeXFX2(_RNNInceptionTimeXFX2_Base):
+class LSTMInceptionTimeXFX_v2(_RNNInceptionTimeXFX_v2_Base):
     _cell = torch.nn.LSTM
 
 if __name__ == '__main__':
     x = torch.randn(2, 500, 16).permute(0, 2, 1)
     x_xfx = torch.randn(2, 16, 11).permute(0, 2, 1)
-    model = RNNInceptionTimeXFX2(c_in=16, c_out=4, seq_len=500, 
+    model = RNNInceptionTimeXFX_v2(c_in=16, c_out=4, seq_len=500, 
                                 xfx_c_in=11, xfx_c_out=256, xfx_feat_len=16,
                                 bidirectional=True)
     print(model(x, x_xfx).shape)

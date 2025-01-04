@@ -8,7 +8,7 @@ noop = torch.nn.Sequential()
 def ifnone(a, b):
     return b if a is None else a
 
-class _RNNInceptionTimeBody2_Base(torch.nn.Module):
+class _RNNInceptionTimeBody_v2_Base(torch.nn.Module):
     def __init__(self,
                  c_in, c_out, seq_len,
                  # Body Metrics 
@@ -74,18 +74,18 @@ class _RNNInceptionTimeBody2_Base(torch.nn.Module):
         x = self.fc(x)
         return x
 
-class RNNInceptionTimeBody2(_RNNInceptionTimeBody2_Base):
+class RNNInceptionTimeBody_v2(_RNNInceptionTimeBody_v2_Base):
     _cell = torch.nn.RNN
     
-class GRUInceptionTimeBody2(_RNNInceptionTimeBody2_Base):
+class GRUInceptionTimeBody_v2(_RNNInceptionTimeBody_v2_Base):
     _cell = torch.nn.GRU
 
-class LSTMInceptionTimeBody2(_RNNInceptionTimeBody2_Base):
+class LSTMInceptionTimeBody_v2(_RNNInceptionTimeBody_v2_Base):
     _cell = torch.nn.LSTM
 
 if __name__ == '__main__':
     x = torch.randn(1, 500, 16).permute(0, 2, 1)
     x_body = torch.randn(1, 3)
-    model = RNNInceptionTimeBody2(c_in=16, c_out=4, seq_len=500, body_c_in=3)
+    model = RNNInceptionTimeBody_v2(c_in=16, c_out=4, seq_len=500, body_c_in=3)
     print(model(x, x_body).shape)
     

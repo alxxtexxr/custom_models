@@ -8,9 +8,9 @@ noop = torch.nn.Sequential()
 def ifnone(a, b):
     return b if a is None else a
 
-class RNNTSTFCN(torch.nn.Module):
+class RNNTransformerFCN(torch.nn.Module):
     def __init__(self, 
-                 # RNNTST  
+                 # RNN-Transformer  
                  c_in, c_out, seq_len, hidden_size=128, rnn_layers=1, bias=True, rnn_dropout=0, bidirectional=False,
                  encoder_layers=3, n_heads:int=16, d_k=None, d_v=None, 
                  d_ff=256, encoder_dropout=0.1, act="gelu",
@@ -26,7 +26,7 @@ class RNNTSTFCN(torch.nn.Module):
                               bidirectional=bidirectional)
         self.gap_attn = GAP1d(1)
         
-        # TST Encoder
+        # Transformer Encoder
         d_model = hidden_size * (1 + bidirectional)
         self.encoder = _TSTEncoder(q_len, d_model, n_heads, d_k=d_k, d_v=d_v, d_ff=d_ff, dropout=encoder_dropout, activation=act, n_layers=encoder_layers)
         
@@ -49,7 +49,7 @@ class RNNTSTFCN(torch.nn.Module):
         rnn_input = x                   # [bs x q_len x nvars]
         output, _ = self.rnn(rnn_input) # output from all sequence steps: [bs x q_len x hidden_size * (1 + bidirectional)]
         
-        # TST Encoder
+        # Transformer Encoder
         z = self.encoder(output)          # z: [bs x q_len x d_model]
         z = z.transpose(2,1).contiguous() # z: [bs x d_model x q_len]
         z = self.gap_attn(z)
