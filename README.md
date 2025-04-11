@@ -3,6 +3,8 @@
 ## Requirements
 ```
 git clone https://github.com/timeseriesAI/tsai
+# Or
+pip install tsai
 ```
 
 ### Optional
