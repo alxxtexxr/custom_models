@@ -1,9 +1,9 @@
 import numpy as np
 import torch
 
-from tsai.tsai.imports import default_device
-from tsai.tsai.models.RNN import RNN, GRU, LSTM
-from tsai.tsai.models.HydraPlus import HydraBackbonePlus
+from tsai.imports import default_device
+from tsai.models.RNN import RNN, GRU, LSTM
+from tsai.models.HydraPlus import HydraBackbonePlus
 
 noop = torch.nn.Sequential()
 

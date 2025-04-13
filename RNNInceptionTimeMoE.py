@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from tsai.tsai.models.InceptionTime import InceptionBlock
-from tsai.tsai.models.layers import Permute, Concat, GAP1d
+from tsai.models.InceptionTime import InceptionBlock
+from tsai.models.layers import Permute, Concat, GAP1d
 
 noop = torch.nn.Sequential()
 

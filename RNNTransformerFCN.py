@@ -1,7 +1,7 @@
 import torch
 
-from tsai.tsai.models.RNNAttention import _TSTEncoder
-from tsai.tsai.models.layers import ConvBlock, SqueezeExciteBlock, GAP1d, Concat
+from tsai.models.RNNAttention import _TSTEncoder
+from tsai.models.layers import ConvBlock, SqueezeExciteBlock, GAP1d, Concat
 
 noop = torch.nn.Sequential()
 

@@ -1,7 +1,7 @@
 
 import torch.nn as nn
 
-from tsai.tsai.models.layers import Module, Permute, ConvBlock, SqueezeExciteBlock, GAP1d, Concat, noop
+from tsai.models.layers import Module, Permute, ConvBlock, SqueezeExciteBlock, GAP1d, Concat, noop
 from pykan.kan import KAN
 
 class MLSTMFCNKAN(Module):

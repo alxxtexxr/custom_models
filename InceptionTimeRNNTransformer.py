@@ -1,8 +1,8 @@
 import torch
 
-from tsai.tsai.models.InceptionTime import InceptionBlock
-from tsai.tsai.models.RNNAttention import _TSTEncoder, get_activation_fn
-from tsai.tsai.models.layers import Flatten, SigmoidRange
+from tsai.models.InceptionTime import InceptionBlock
+from tsai.models.RNNAttention import _TSTEncoder, get_activation_fn
+from tsai.models.layers import Flatten, SigmoidRange
 
 class _InceptionTimeRNNTransformer_Base(torch.nn.Module):
     def __init__(

@@ -1,8 +1,8 @@
 import torch
 
-from tsai.tsai.models.XceptionTime import XceptionBlock
-from tsai.tsai.models.RNNAttention import _TSTEncoder, get_activation_fn
-from tsai.tsai.models.layers import Flatten, SigmoidRange
+from tsai.models.XceptionTime import XceptionBlock
+from tsai.models.RNNAttention import _TSTEncoder, get_activation_fn
+from tsai.models.layers import Flatten, SigmoidRange
 
 def ifnone(a, b):
     return b if a is None else a

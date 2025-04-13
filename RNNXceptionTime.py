@@ -1,8 +1,8 @@
 import torch
 
-from tsai.tsai.imports import default_device
-from tsai.tsai.models.XceptionTime import XceptionBlock
-from tsai.tsai.models.layers import Permute, Concat, GAP1d
+from tsai.imports import default_device
+from tsai.models.XceptionTime import XceptionBlock
+from tsai.models.layers import Permute, Concat, GAP1d
 
 noop = torch.nn.Sequential()
 

@@ -4,7 +4,7 @@ import sys
 import torch
 import torch.nn as nn
 
-from tsai.tsai.models.layers import Module, ConvBlock, SqueezeExciteBlock, GAP1d, Concat, noop
+from tsai.models.layers import Module, ConvBlock, SqueezeExciteBlock, GAP1d, Concat, noop
 
 # xLSTM
 from torch import Tensor

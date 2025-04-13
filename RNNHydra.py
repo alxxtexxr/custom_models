@@ -1,10 +1,10 @@
 import fire
 import torch
 
-from tsai.tsai.imports import default_device
-from tsai.tsai.models.RNNAttention import _TSTEncoder, get_activation_fn
-from tsai.tsai.models.HydraPlus import HydraBackbonePlus
-from tsai.tsai.models.layers import Concat, Flatten, SigmoidRange
+from tsai.imports import default_device
+from tsai.models.RNNAttention import _TSTEncoder, get_activation_fn
+from tsai.models.HydraPlus import HydraBackbonePlus
+from tsai.models.layers import Concat, Flatten, SigmoidRange
 
 noop = torch.nn.Sequential()
 

@@ -6,8 +6,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from tsai.tsai.imports import default_device
-from tsai.tsai.models.layers import Flatten, rocket_nd_head
+from tsai.imports import default_device
+from tsai.models.layers import Flatten, rocket_nd_head
 
 class HydraMedianBackbonePlus(nn.Module):
 
