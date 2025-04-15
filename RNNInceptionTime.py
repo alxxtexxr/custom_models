@@ -42,7 +42,7 @@ class _RNNInceptionTime_Base(torch.nn.Module):
         last_out = output[:, -1] # output of last sequence step (many-to-one)
         last_out = self.rnn_dropout(last_out)
         
-        # Hydra
+        # InceptionTime
         x = self.inception_block(x)
         x = self.gap(x)
         
