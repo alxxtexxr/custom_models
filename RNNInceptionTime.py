@@ -12,10 +12,10 @@ def ifnone(a, b):
 class _RNNInceptionTime_Base(nn.Module):
     def __init__(self,
                  c_in, c_out, seq_len,
-                 # RNN params
+                 # RNN parameters
                  hidden_size=128, rnn_layers=1, bias=True, cell_dropout=0, rnn_dropout=0.8, bidirectional=False, shuffle=True, 
                  fc_dropout:float=0.,
-                 # InceptionTime params
+                 # InceptionTime parameters
                  nf=32, 
                  ):
         super().__init__()
