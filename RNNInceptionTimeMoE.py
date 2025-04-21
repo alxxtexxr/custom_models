@@ -114,18 +114,17 @@ class RNNInceptionTimeMoE(torch.nn.Module):
         self.gate = Gate(c_in=shared_encoder_nf, n_expert=n_expert, hidden_size=hidden_size)
 
     def forward(self, x):
+        # Embedding
         emb = self.shared_encoder(x) # [batch_size, shared_encoder_nf]
-        # print(f'{emb.shape=}')
-        
-        gate_out = self.gate(emb) # [batch_size, num_experts]
-        # print(f'{gate_out.shape=}')
 
+        # Gate
+        gate_out = self.gate(emb) # [batch_size, num_experts]
+
+        # Experts
         expert_outs = [expert(emb) for expert in self.experts]
         expert_outs = torch.stack(expert_outs, dim=1) # [batch_size, n_expert, c_out]
-        # print(f'{expert_outs.shape=}')
 
-        final_out = torch.bmm(gate_out.unsqueeze(1), expert_outs).squeeze(1) # [batch_size, c_out]
-        # print(f'{final_out.shape=}')
+        final_out = torch.bmm(gate_out.unsqueeze(1), expert_outs).squeeze(1) # [batch_size, c_out]\
         return final_out
 
 if __name__ == '__main__':
