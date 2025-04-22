@@ -7,24 +7,24 @@ from tsai.models.layers import Flatten, SigmoidRange
 class InceptionTimeTransformer(torch.nn.Module):
     def __init__(
         self, c_out, seq_len,
-        # InceptionTime
+        # InceptionTime parameters
         c_in, nf=32,
-        # Transformer
+        # Transformer parameters
         encoder_layers:int=3, n_heads:int=16, d_k=None, d_v=None, d_ff=256, encoder_dropout=0.1, act="gelu", 
-        # Head
+        # Head parameters
         fc_dropout=0., y_range=None,
     ):
         super().__init__()
         
-        # InceptionTime
+        # InceptionTime layers
         self.inceptionblock = InceptionBlock(c_in, nf)
         
-        # Transformer
+        # Transformer layers
         q_len = seq_len
         d_model = nf * 4
         self.encoder = _TSTEncoder(q_len, d_model, n_heads, d_k=d_k, d_v=d_v, d_ff=d_ff, dropout=encoder_dropout, activation=act, n_layers=encoder_layers)
         
-        # Head
+        # Head layers
         self.head_nf = q_len * d_model
         self.head = self.create_head(self.head_nf, c_out, act=act, fc_dropout=fc_dropout, y_range=y_range)
     
@@ -36,14 +36,14 @@ class InceptionTimeTransformer(torch.nn.Module):
         return torch.nn.Sequential(*layers)    
     
     def forward(self, x):
-        # InceptionTime
+        # InceptionTime forward
         x = self.inceptionblock(x)
 
-        # Transformer
+        # Transformer forward
         x = x.transpose(2, 1)              # [bs x nvars x q_len] --> [bs x q_len x nvars]
         z = self.encoder(x)                # z: [bs x q_len x d_model]
         z = z.transpose(2, 1).contiguous() # z: [bs x d_model x q_len]
         
-        # Head
+        # Head forward
         output = self.head(z) # output: [bs x c_out]
         return output
