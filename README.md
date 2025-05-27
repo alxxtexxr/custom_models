@@ -1,6 +1,6 @@
 # Custom Models
 
-## Requirements
+## Setup
 ```
 pip install tsai
 ```
